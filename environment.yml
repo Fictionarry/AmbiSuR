@@ -1,0 +1,36 @@
+name: ambisur
+
+### Used to specify CUDA version temporarily.
+# export CPATH=/usr/local/cuda-12.8/targets/x86_64-linux/include:$CPATH
+# export LD_LIBRARY_PATH=/usr/local/cuda-12.8/targets/x86_64-linux/lib:$LD_LIBRARY_PATH
+# export PATH=/usr/local/cuda-12.8/bin:$PATH
+# export CUDA_HOME=/usr/local/cuda-12.8/
+
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pip=23.0
+  - mkl=2023.1.0
+  - numpy=1.26.3
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu128
+      - torch==2.7.1+cu128
+      - torchvision==0.22.1+cu128
+      - torchaudio==2.7.1+cu128
+      
+      - einops
+      - opencv-python
+      - numpy==1.26.3
+
+      - tqdm
+      - natsort
+      - pillow
+      - imageio
+      - imageio-ffmpeg
+      - scikit-image
+
+      - plyfile
+      - trimesh==4.0.4
+      - open3d==0.18.0
+      - pycolmap==3.10.0

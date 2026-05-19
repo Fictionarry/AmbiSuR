@@ -1,0 +1,6 @@
+lpips
+numpy==1.26.3
+
+git+https://github.com/facebookresearch/pytorch3d.git
+submodules/diff-plane-rasterization-ambisur
+submodules/simple-knn
