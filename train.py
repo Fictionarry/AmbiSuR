@@ -137,7 +137,7 @@ def training(dataset, opt, pipe, testing_iterations, saving_iterations, checkpoi
         
         depthanythingv2_loss = DepthAnythingv2Loss(
             iter_from=3000,
-            iter_end=30000,
+            iter_end=opt.iterations,
             end_mult=0.1,
             overall=opt.use_mono_overall)
 
@@ -166,7 +166,7 @@ def training(dataset, opt, pipe, testing_iterations, saving_iterations, checkpoi
         bg = torch.rand((3), device="cuda") if opt.random_background else background
         render_pkg = render(viewpoint_cam, gaussians, pipe, bg, app_model=app_model,
                             return_plane=iteration>0, return_depth_normal=True, 
-                            ray_reg=(-1 if iteration > 15000 else opt.ray_color_lambda) if iteration > 5000 else -1,
+                            ray_reg=(-1 if iteration > opt.densify_until_iter else opt.ray_color_lambda) if iteration > 5000 else -1,
                             opt=opt)
         image, viewspace_point_tensor, visibility_filter, radii = \
             render_pkg["render"], render_pkg["viewspace_points"], render_pkg["visibility_filter"], render_pkg["radii"]
